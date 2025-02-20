@@ -247,30 +247,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  .action-buttons {
-    position: absolute !important;
-    top: 20px !important;
-    right: 20px !important;
-    left: auto !important;
-    bottom: auto !important;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 12px;
-    transform: scale(1) !important; /* Reset scaling */
-  }
-
-  .action-buttons a {
-    font-size: 1.5rem !important; /* Fixed size */
-    padding: 12px 24px !important; /* Maintain proportion */
-    min-width: 200px !important; /* Stop growing */
-    min-height: auto !important; /* Prevent unnecessary stretching */
-    border-radius: 10px !important;
-  }
-}
-
-
-
 .action-buttons a {
   position: relative;
   display: inline-block;
@@ -305,6 +281,46 @@
   transform: scale(1.1);
 }
 
+
+
+
+@media (max-width: 768px) {
+  .parallax-container {
+    position: relative;
+  }
+
+  .page-title {
+    width: 90%;
+  }
+
+  .action-buttons {
+    position: absolute;
+    bottom: 12vh;
+    left: 5%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .action-buttons a {
+    width: 250px;
+    font-size: 1.2rem;
+    padding: 12px 0;
+    text-align: center;
+    border-radius: 8px;
+    min-height: 50px;
+  }
+}
+
+
+
+
+
+
+
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -325,21 +341,4 @@
   background-image: url('images/texture.png');
   background-size: cover;
   background-position: center;
-}
-
-/* Sticky fix for mobile */
-@media (max-width: 768px) {
-  .parallax-container {
-    position: relative;
-  }
-
-  .action-buttons {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-
-  .parallax-container h1 {
-    font-size: 1.5rem; /* Adjust as needed */
-  }
 }
