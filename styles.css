@@ -329,8 +329,17 @@
   animation: fade-in 0.75s ease-out 1.5s forwards;
 }
 
-.bg-texture {
-  background-image: url('images/texture.png');
-  background-size: cover;
-  background-position: center;
+.card .flex.items-center {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.card .flex.items-center > div {
+  flex-shrink: 0;
+}
+
+.card .flex.items-center h3 {
+  flex-shrink: 1;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  min-width: 0;
 }
