@@ -1,0 +1,160 @@
+.parallax-container {
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.images-container {
+  width: 100vw;
+  height: 100%;
+  position: relative;
+}
+
+/* 🌌 Background Layer (Nebula - Moves Away) */
+.background-1 {
+  background: url("images/nebula.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  transform: scale(1.2);
+  transition: transform 1.5s ease-in-out;
+  z-index: 1;
+}
+.background-1.scale {
+  transform: scale(1);
+}
+
+/* 🪐 Middle Layer (Planet - Moves Up Slightly While Scaling) */
+.background-2 {
+  background: url("images/planet.png");
+  background-size: contain;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: clamp(5vh, 10%, 12vh); /* ✅ Starts lower but moves up */
+  right: -5vw;
+  width: clamp(65vw, 85vw, 900px);
+  height: clamp(65vh, 85vh, 900px);
+  transform: scale(1.3) translateY(0);
+  transition: transform 1.5s ease-in-out;
+  z-index: 3;
+}
+.background-2.scale {
+  transform: scale(1.5) translateY(-5vh); /* ✅ Moves upward as it scales */
+}
+
+/* 🪨 Foreground Layer (Rocks - Correctly Sized & Pinned) */
+.background-3 {
+  background: url("images/rocks.png");
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0px; /* ✅ Keeps it fixed */
+  left: 50%;
+  transform: translateX(-50%) scale(1.1);
+  width: 110vw;
+  height: clamp(40vh, 50vh, 55vh);
+  transition: transform 1.5s ease-in-out;
+  z-index: 4;
+}
+.background-3.scale {
+  transform: translateX(-50%) scale(1.2);
+}
+
+/* 📏 Responsive Adjustments */
+@media (max-width: 1024px) {
+  .background-2 {
+    width: clamp(60vw, 80vw, 850px);
+    height: clamp(60vh, 80vh, 850px);
+    bottom: clamp(8vh, 12%, 14vh);
+    right: -2vw;
+  }
+
+  .background-3 {
+    width: 120vw;
+    height: clamp(45vh, 50vh, 55vh);
+    bottom: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .background-2 {
+    width: clamp(55vw, 75vw, 750px);
+    height: clamp(55vh, 75vh, 750px);
+    bottom: clamp(10vh, 14%, 18vh); /* ✅ Moves higher on small screens */
+    right: 2vw;
+  }
+
+  .background-3 {
+    width: 125vw;
+    height: clamp(40vh, 45vh, 50vh);
+    bottom: 0px;
+  }
+}
+
+/* 🚀 Spaceship (Now Delayed 15s on First Flight, Repeats Every 2 Minutes) */
+.hood {
+  background: url("images/excelsior.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 6vw;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  bottom: 5vh;
+  right: -10vw; /* ✅ Starts hidden behind the planet */
+  opacity: 1;
+  transform: rotate(-15deg);
+  z-index: 2; /* ✅ Between planet & nebula */
+  animation: fly-away 7s linear 8s infinite; /* ✅ First flight starts after 15s */
+}
+
+/* 🚀 Flight Path (Same Smooth Motion) */
+@keyframes fly-away {
+  0% { transform: translate(0, 0) rotate(-15deg); }
+  20% { transform: translate(-25vw, -10vh) rotate(-10deg); }
+  40% { transform: translate(-50vw, -25vh) rotate(-5deg); }
+  60% { transform: translate(-75vw, -40vh) rotate(0deg); }
+  80% { transform: translate(-100vw, -55vh) rotate(5deg); }
+  100% { transform: translate(-125vw, -65vh) rotate(10deg); } /* ✅ Fully exits */
+}
+
+/* 📏 Responsive Adjustments */
+@media (max-width: 1024px) {
+  .hood {
+    width: 7vw;
+    animation: fly-away 7s linear 15s infinite 120s; /* ✅ Repeats every 120s */
+  }
+
+  @keyframes fly-away {
+    0% { transform: translate(0, 0) rotate(-15deg); }
+    20% { transform: translate(-22vw, -8vh) rotate(-10deg); }
+    40% { transform: translate(-48vw, -22vh) rotate(-5deg); }
+    60% { transform: translate(-72vw, -35vh) rotate(0deg); }
+    80% { transform: translate(-98vw, -50vh) rotate(5deg); }
+    100% { transform: translate(-125vw, -60vh) rotate(10deg); }
+  }
+}
+
+@media (max-width: 768px) {
+  .hood {
+    width: 8vw;
+    animation: fly-away 7s linear 15s infinite 120s;
+  }
+
+  @keyframes fly-away {
+    0% { transform: translate(0, 0) rotate(-15deg); }
+    20% { transform: translate(-18vw, -7vh) rotate(-10deg); }
+    40% { transform: translate(-42vw, -18vh) rotate(-5deg); }
+    60% { transform: translate(-66vw, -30vh) rotate(0deg); }
+    80% { transform: translate(-90vw, -45vh) rotate(5deg); }
+    100% { transform: translate(-120vw, -55vh) rotate(10deg); }
+  }
+}

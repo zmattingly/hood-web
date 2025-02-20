@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The USS Hood</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">  <!-- ✅ External CSS file -->
+</head>
+<body class="bg-gray-900 text-white">
+  <header class="flex justify-between items-center p-4 bg-gray-800">
+    <h2 class="text-xl font-bold">DONGSHOP.BIZ</h2>
+    <a href="https://discord.gg/YOUR_INVITE_LINK" class="text-white text-2xl">🔗</a>
+  </header>
+
+  <section class="">
+    <div class="parallax-container">
+      <div class="images-container">
+        <div class="background-1"></div>
+        <div class="background-2"></div>
+        <div class="background-3"></div>
+
+        <div class="hood"></div>
+
+        <div class="text-block flow-left">
+            <p className="main">The USS Hood</p>
+            <p className="sub">Gift Membership Drive 2025</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.querySelectorAll(".background-1, .background-2, .background-3").forEach((el) => {
+        el.classList.add("scale");
+      });
+    });
+
+    // Smooth resize adjustments
+    window.addEventListener("resize", () => {
+      document.querySelectorAll(".background-1, .background-2, .background-3").forEach((el) => {
+        el.classList.remove("scale");
+        setTimeout(() => el.classList.add("scale"), 100);
+      });
+    });
+  </script>
+</body>
+</html>
