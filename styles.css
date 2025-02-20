@@ -1,3 +1,4 @@
+/* Parallax Hero Stuff */
 .parallax-container {
   position: relative;
   width: 100vw;
@@ -11,9 +12,9 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: clamp(4vh, 7vh, 10vh); /* ✅ Dynamically scales with viewport */
+  height: clamp(4vh, 7vh, 10vh);
   background: linear-gradient(to bottom, rgba(17, 24, 39, 0) 0%, #111827 100%);
-  z-index: 6; /* Keep it above other elements */
+  z-index: 6;
   pointer-events: none;
 }
 
@@ -23,7 +24,6 @@
   position: relative;
 }
 
-/* 🌌 Background Layer (Nebula - Moves Away) */
 .background-1 {
   background: url("images/nebula.jpg");
   background-size: cover;
@@ -42,14 +42,13 @@
   transform: scale(1);
 }
 
-/* 🪐 Middle Layer (Planet - Moves Up Slightly While Scaling) */
 .background-2 {
   background: url("images/planet.png");
   background-size: contain;
   background-position: bottom right;
   background-repeat: no-repeat;
   position: absolute;
-  bottom: clamp(5vh, 10%, 12vh); /* ✅ Starts lower but moves up */
+  bottom: clamp(5vh, 10%, 12vh);
   right: -5vw;
   width: clamp(65vw, 85vw, 900px);
   height: clamp(65vh, 85vh, 900px);
@@ -58,17 +57,16 @@
   z-index: 4;
 }
 .background-2.scale {
-  transform: scale(1.5) translateY(-5vh); /* ✅ Moves upward as it scales */
+  transform: scale(1.5) translateY(-5vh);
 }
 
-/* 🪨 Foreground Layer (Rocks - Correctly Sized & Pinned) */
 .background-3 {
   background: url("images/rocks.png");
   background-size: cover;
   background-position: bottom center;
   background-repeat: no-repeat;
   position: absolute;
-  bottom: 0px; /* ✅ Keeps it fixed */
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%) scale(1.1);
   width: 110vw;
@@ -86,12 +84,11 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 10vh; /* Adjust as needed */
+  height: 10vh;
   background: linear-gradient(to bottom, rgba(17, 24, 39, 0) 0%, #111827 100%);
   pointer-events: none;
 }
 
-/* 📏 Responsive Adjustments */
 @media (max-width: 1024px) {
   .background-2 {
     width: clamp(60vw, 80vw, 850px);
@@ -111,7 +108,7 @@
   .background-2 {
     width: clamp(55vw, 75vw, 750px);
     height: clamp(55vh, 75vh, 750px);
-    bottom: clamp(8vh, 12%, 16vh); /* ✅ Moves higher on small screens */
+    bottom: clamp(8vh, 12%, 16vh);
     right: 2vw;
   }
 
@@ -122,7 +119,7 @@
   }
 }
 
-/* 🚀 Spaceship (Now Delayed 15s on First Flight, Repeats Every 2 Minutes) */
+/* The Hood Takes Flight! */
 .hood {
   background: url("images/excelsior.png");
   background-size: contain;
@@ -138,7 +135,6 @@
   z-index: 3;
 }
 
-/* 🚀 Motion Blur Effect */
 @keyframes fly-away {
   0% {
     transform: translate(0, 0) rotate(-15deg);
@@ -158,52 +154,31 @@
     opacity: 1;
   }
   100% {
-    transform: translate(-150vw, -80vh) rotate(10deg); /* Make sure it fully exits */
+    transform: translate(-150vw, -80vh) rotate(10deg);
     filter: blur(0px);
-    opacity: 0; /* Only fade out at the very end */
+    opacity: 0;
   }
 }
 
-
-/* 📏 Responsive Adjustments */
 @media (max-width: 1024px) {
   .hood {
     width: 10vw;
-    animation: fly-away-medium 7s linear 8s infinite;
-  }
-
-  @keyframes fly-away-medium {
-    0% { transform: translate(0, 0) rotate(-15deg); filter: blur(0px); opacity: 1; }
-    30% { filter: blur(2.5px); }
-    50% { filter: blur(4px); }
-    80% { filter: blur(2px); }
-    100% { transform: translate(-125vw, -60vh) rotate(10deg); filter: blur(0px); opacity: 0.8; }
   }
 }
 
 @media (max-width: 768px) {
   .hood {
     width: 12vw;
-    animation: fly-away-small 7s linear 8s infinite;
-  }
-
-  @keyframes fly-away-small {
-    0% { transform: translate(0, 0) rotate(-15deg); filter: blur(0px); opacity: 1; }
-    30% { filter: blur(2px); }
-    50% { filter: blur(3px); }
-    80% { filter: blur(1.5px); }
-    100% { transform: translate(-120vw, -55vh) rotate(10deg); filter: blur(0px); opacity: 0.8; }
   }
 }
 
-
-/* Page title */
+/* Main Header */
 .page-title {
   position: absolute;
   left: 5%;
   top: 5%;
   width: 55%;
-  z-index: 2; /* Above nebula, below spaceship */
+  z-index: 2;
   font-weight: bold;
   display: block;
   transform: translateX(-100vw);
@@ -226,68 +201,62 @@
 }
 
 .page-title h1 {
-  font-size: clamp(4rem, 6.5vw, 7.5rem); /* Default scaling behavior */
+  font-size: clamp(4rem, 6.5vw, 7.5rem);
 }
 
 /* Freeze scaling between 768px and 1024px */
 @media (min-width: 768px) and (max-width: 1024px) {
   .page-title h1 {
-    font-size: 4rem; /* Keep the h1 static in this range */
+    font-size: 4rem;
   }
 }
 
-
-/* Action Buttons */
+/* Call To Action Buttons */
 .action-buttons {
   position: absolute;
-  left: 5%; /* Aligns with the h1 */
-  bottom: clamp(10vh, 15%, 20vh); /* Scales position with viewport */
-  z-index: 5; /* Above the rocks */
+  left: 5%;
+  bottom: clamp(10vh, 15%, 20vh);
+  z-index: 5;
   display: flex;
-  flex-direction: row; /* Default: Side by side */
+  flex-direction: row;
   align-items: center;
-  gap: clamp(20px, 2.5vw, 50px); /* ⬅ Increased spacing by 25% */
+  gap: clamp(20px, 2.5vw, 50px);
   opacity: 0;
   animation: fade-in .75s ease-out 1s forwards;
-  transform: scale(1.5); /* Increases button size by 50% */
+  transform: scale(1.5);
 }
 
-/* Stack vertically AND move down by 5% on small screens (1024px and below) */
 @media (max-width: 1024px) {
   .action-buttons {
     flex-direction: column;
-    align-items: flex-start; /* Align to the left */
-    bottom: calc(clamp(10vh, 15%, 20vh) + 5%); /* Moves down by 5% */
-    gap: clamp(15px, 2vw, 40px); /* Adjusted gap for stacked buttons */
+    align-items: flex-start;
+    bottom: calc(clamp(10vh, 15%, 20vh) + 5%);
+    gap: clamp(15px, 2vw, 40px);
   }
 }
 
 .action-buttons a {
-  position: relative; /* Needed for the shine effect */
-  display: inline-block; /* Ensures padding applies correctly */
-  font-size: clamp(2rem, 3vw, 4.5rem); /* Larger text size */
-  padding: clamp(24px, 4vw, 50px) clamp(40px, 6vw, 100px); /* Increased padding */
-  min-width: clamp(250px, 35vw, 600px); /* Wider buttons */
-  min-height: clamp(80px, 10vh, 180px); /* Taller buttons */
-  border-radius: clamp(12px, 2.5vw, 30px); /* Smooth button corners */
+  position: relative;
+  display: inline-block;
+  font-size: clamp(2rem, 3vw, 4.5rem);
+  padding: clamp(24px, 4vw, 50px) clamp(40px, 6vw, 100px);
+  min-width: clamp(250px, 35vw, 600px);
+  min-height: clamp(80px, 10vh, 180px);
+  border-radius: clamp(12px, 2.5vw, 30px);
   font-weight: bold;
   text-align: center;
-  overflow: hidden; /* Prevent shine effect from overflowing */
+  overflow: hidden;
   transition: transform 0.2s ease-in-out;
 }
 
-/* Ensures proper layout for smaller screens */
 @media (max-width: 768px) {
   .action-buttons {
-    flex-direction: column; /* Stack buttons on small screens */
+    flex-direction: column;
     align-items: center;
-    gap: 24px; /* More spacing between buttons */
+    gap: 24px;
   }
 }
 
-
-
-/* Add a shine effect */
 .action-buttons a::after {
   content: "";
   position: absolute;
@@ -300,13 +269,13 @@
   transition: left 0.6s ease-in-out;
 }
 
-/* Trigger shine effect on hover */
+
 .action-buttons a:hover::after {
-  left: 150%; /* Moves fully off-screen */
+  left: 150%;
 }
 
 .action-buttons a:hover {
-  transform: scale(1.1); /* Slightly enlarges button on hover */
+  transform: scale(1.1);
 }
 
 @keyframes fade-in {
@@ -325,9 +294,8 @@
   animation: fade-in 0.75s ease-out 1.5s forwards;
 }
 
-/* 📌 Textured Background (Optional) */
 .bg-texture {
-  background-image: url('images/texture.png'); /* Replace with a subtle texture image */
+  background-image: url('images/texture.png');
   background-size: cover;
   background-position: center;
 }

@@ -13,7 +13,7 @@
   <link rel="manifest" href="/site.webmanifest">
 </head>
 <body class="bg-gray-900 text-white text-left">
-  <header class="flex justify-between items-center p-4 bg-gray-800">
+  <header class="flex justify-between items-center p-4 bg-gray-800 px-[5%]">
     <h2 class="text-xl font-bold">
       <a href="/" class="text-white text-2xl">DONGSHOP.BIZ</a>
     </h2>
@@ -21,6 +21,7 @@
       <img src="images/icons/discord.png" alt="Join The Hood!" class="h-8">
     </a>
   </header>
+
 
   <section class="hero">
     <div class="parallax-container">
@@ -37,10 +38,10 @@
       </div>
 
       <div class="action-buttons">
-        <a href="http://drunkshimoda.com" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 px-8 py-4 rounded-lg text-xl font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 inline-block text-center">
+        <a href="http://drunkshimoda.com" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 px-8 py-4 rounded-lg text-xl font-bold focus:ring-blue-300 dark:focus:ring-blue-800 inline-block text-center">
           Sign Up
         </a>
-        <a href="https://cheddarup.com" class="text-white bg-gradient-to-br from-green-400 to-blue-600 px-8 py-4 rounded-lg text-xl font-bold focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 inline-block text-center">
+        <a href="https://cheddarup.com" class="text-white bg-gradient-to-br from-green-400 to-blue-600 px-8 py-4 rounded-lg text-xl font-bold focus:ring-green-200 dark:focus:ring-green-800 inline-block text-center">
           Donate
         </a>
       </div>
@@ -51,12 +52,12 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
       <div class="card fade-in-delay bg-gray-800/90 backdrop-blur-md p-6 rounded-xl shadow-md flex flex-col relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-gray-900/10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-indigo-950/50 pointer-events-none"></div>
         <div class="absolute inset-0 bg-texture opacity-10 mix-blend-overlay"></div>
 
         <div class="flex items-center space-x-4 pb-3 border-b border-gray-600 relative z-10">
           <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-700 flex items-center justify-center">
-            <img src="images/icons/agimus.png" alt="AGIMUS, Our Benevolent Bot" class="w-full h-full object-cover">
+            <img src="images/icons/uss_hood.png" alt="Give Porthos some Cheeeeese Pleeeeease" class="w-full h-full object-cover">
           </div>
           <h3 class="text-4xl font-bold text-white drop-shadow-lg">The USS Hood</h3>
         </div>
@@ -69,7 +70,7 @@
       </div>
 
       <div class="card fade-in-delay bg-gray-800/90 backdrop-blur-md p-6 rounded-xl shadow-md flex flex-col relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-gray-900/10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-indigo-950/60 pointer-events-none"></div>
         <div class="absolute inset-0 bg-texture opacity-10 mix-blend-overlay"></div>
 
         <div class="flex items-center space-x-4 pb-3 border-b border-gray-600 relative z-10">
@@ -86,7 +87,7 @@
       </div>
 
       <div class="card fade-in-delay bg-gray-800/90 backdrop-blur-md p-6 rounded-xl shadow-md flex flex-col relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-gray-900/10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-indigo-950/70 pointer-events-none"></div>
         <div class="absolute inset-0 bg-texture opacity-10 mix-blend-overlay"></div>
 
         <div class="flex items-center space-x-4 pb-3 border-b border-gray-600 relative z-10">
@@ -102,14 +103,14 @@
             <a href="https://www.cheddarup.com/" class="text-blue-400 hover:underline">Cheddar Up</a>.
           </p>
           <p>If you'd like a chance to win a membership all you have to do is sign up by
-            <a href="http://drunkshimoda.com" class="text-blue-400 hover:underline">joining the Discord</a>,
+            <a href="http://drunkshimoda.com" class="text-blue-400 hover:underline">joining the Discord server</a>,
             and completing a short form.
           </p>
         </div>
       </div>
 
       <div class="card fade-in-delay bg-gray-800/90 backdrop-blur-md p-6 rounded-xl shadow-md flex flex-col relative overflow-hidden lg:col-span-full xl:col-span-1">
-        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-gray-900/10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-indigo-950/80 pointer-events-none"></div>
         <div class="absolute inset-0 bg-texture opacity-10 mix-blend-overlay"></div>
 
         <div class="flex items-center space-x-4 pb-3 border-b border-gray-600 relative z-10">
@@ -137,8 +138,7 @@
         el.classList.add("scale");
       });
 
-      // Start spaceship animation on page load
-      restartAnimation();
+      setTimeout(restartAnimation, 2000); // Only call restartAnimation ONCE at the start
     });
 
     window.addEventListener("resize", () => {
@@ -150,19 +150,16 @@
 
     function restartAnimation() {
       const ship = document.querySelector(".hood");
-      if (!ship) return; // Prevent errors if .hood is missing
+      if (!ship) return;
 
       ship.style.animation = "none";
-      void ship.offsetWidth; // Trigger reflow
+      void ship.offsetWidth;
       ship.style.animation = "fly-away 7s linear forwards";
 
-      // Repeat animation every 60 seconds
-      setTimeout(restartAnimation, 60000);
+      setTimeout(restartAnimation, 60000); // Ensure only ONE timer is set
     }
-
-    // Delay first spaceship animation by 5 seconds
-    setTimeout(restartAnimation, 5000);
   </script>
+
 
 </body>
 </html>
