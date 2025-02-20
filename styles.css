@@ -136,54 +136,66 @@
   opacity: 1;
   transform: rotate(-15deg);
   z-index: 3;
-  animation: fly-away 7s linear 8s infinite;
 }
 
 /* 🚀 Motion Blur Effect */
 @keyframes fly-away {
   0% {
     transform: translate(0, 0) rotate(-15deg);
-    filter: blur(0px);
+    filter: blur(3px);
     opacity: 1;
   }
   30% {
-    filter: blur(3px); /* Start applying blur */
+    filter: blur(2px);
+    opacity: 1;
   }
   50% {
-    filter: blur(5px); /* Peak blur at mid-flight */
+    filter: blur(1px);
+    opacity: 1;
   }
   80% {
-    filter: blur(3px); /* Reduce blur near end */
+    filter: blur(0px);
+    opacity: 1;
   }
   100% {
-    transform: translate(-125vw, -65vh) rotate(10deg);
+    transform: translate(-150vw, -80vh) rotate(10deg); /* Make sure it fully exits */
     filter: blur(0px);
-    opacity: 0.8; /* Slight fade as it exits */
+    opacity: 0; /* Only fade out at the very end */
   }
 }
+
 
 /* 📏 Responsive Adjustments */
 @media (max-width: 1024px) {
   .hood {
     width: 10vw;
+    animation: fly-away-medium 7s linear 8s infinite;
   }
 
-  @keyframes fly-away {
-    0% { transform: translate(0, 0) rotate(-15deg); }
-    100% { transform: translate(-125vw, -60vh) rotate(10deg); }
+  @keyframes fly-away-medium {
+    0% { transform: translate(0, 0) rotate(-15deg); filter: blur(0px); opacity: 1; }
+    30% { filter: blur(2.5px); }
+    50% { filter: blur(4px); }
+    80% { filter: blur(2px); }
+    100% { transform: translate(-125vw, -60vh) rotate(10deg); filter: blur(0px); opacity: 0.8; }
   }
 }
 
 @media (max-width: 768px) {
   .hood {
     width: 12vw;
+    animation: fly-away-small 7s linear 8s infinite;
   }
 
-  @keyframes fly-away {
-    0% { transform: translate(0, 0) rotate(-15deg); }
-    100% { transform: translate(-120vw, -55vh) rotate(10deg); }
+  @keyframes fly-away-small {
+    0% { transform: translate(0, 0) rotate(-15deg); filter: blur(0px); opacity: 1; }
+    30% { filter: blur(2px); }
+    50% { filter: blur(3px); }
+    80% { filter: blur(1.5px); }
+    100% { transform: translate(-120vw, -55vh) rotate(10deg); filter: blur(0px); opacity: 0.8; }
   }
 }
+
 
 /* Page title */
 .page-title {
@@ -195,7 +207,7 @@
   font-weight: bold;
   display: block;
   transform: translateX(-100vw);
-  animation: slide-in 1.5s ease-out forwards;
+  animation: slide-in 1.25s ease-out forwards;
 }
 
 @keyframes slide-in {
@@ -236,7 +248,7 @@
   align-items: center;
   gap: clamp(20px, 2.5vw, 50px); /* ⬅ Increased spacing by 25% */
   opacity: 0;
-  animation: fade-in 1s ease-out 2s forwards;
+  animation: fade-in .75s ease-out 1s forwards;
   transform: scale(1.5); /* Increases button size by 50% */
 }
 
@@ -250,21 +262,33 @@
   }
 }
 
-.action-buttons button {
+.action-buttons a {
   position: relative; /* Needed for the shine effect */
-  font-size: clamp(1.5rem, 3vw, 4.5rem); /* 50% larger text */
-  padding: clamp(15px, 3vw, 30px) clamp(25px, 5vw, 60px); /* 50% larger padding */
-  min-width: clamp(180px, 30vw, 500px); /* 50% larger width */
-  min-height: clamp(60px, 7.5vh, 150px); /* 50% larger height */
-  border-radius: clamp(8px, 1.5vw, 20px); /* Rounded corners scale */
+  display: inline-block; /* Ensures padding applies correctly */
+  font-size: clamp(2rem, 3vw, 4.5rem); /* Larger text size */
+  padding: clamp(24px, 4vw, 50px) clamp(40px, 6vw, 100px); /* Increased padding */
+  min-width: clamp(250px, 35vw, 600px); /* Wider buttons */
+  min-height: clamp(80px, 10vh, 180px); /* Taller buttons */
+  border-radius: clamp(12px, 2.5vw, 30px); /* Smooth button corners */
   font-weight: bold;
   text-align: center;
   overflow: hidden; /* Prevent shine effect from overflowing */
   transition: transform 0.2s ease-in-out;
 }
 
+/* Ensures proper layout for smaller screens */
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column; /* Stack buttons on small screens */
+    align-items: center;
+    gap: 24px; /* More spacing between buttons */
+  }
+}
+
+
+
 /* Add a shine effect */
-.action-buttons button::after {
+.action-buttons a::after {
   content: "";
   position: absolute;
   top: 0;
@@ -277,11 +301,11 @@
 }
 
 /* Trigger shine effect on hover */
-.action-buttons button:hover::after {
+.action-buttons a:hover::after {
   left: 150%; /* Moves fully off-screen */
 }
 
-.action-buttons button:hover {
+.action-buttons a:hover {
   transform: scale(1.1); /* Slightly enlarges button on hover */
 }
 
@@ -296,3 +320,14 @@
   }
 }
 
+.fade-in-delay {
+  opacity: 0;
+  animation: fade-in 0.75s ease-out 1.5s forwards;
+}
+
+/* 📌 Textured Background (Optional) */
+.bg-texture {
+  background-image: url('images/texture.png'); /* Replace with a subtle texture image */
+  background-size: cover;
+  background-position: center;
+}
