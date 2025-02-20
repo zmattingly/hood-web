@@ -5,6 +5,18 @@
   overflow: hidden;
 }
 
+.parallax-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(4vh, 7vh, 10vh); /* ✅ Dynamically scales with viewport */
+  background: linear-gradient(to bottom, rgba(17, 24, 39, 0) 0%, #111827 100%);
+  z-index: 6; /* Keep it above other elements */
+  pointer-events: none;
+}
+
 .images-container {
   width: 100vw;
   height: 100%;
@@ -43,7 +55,7 @@
   height: clamp(65vh, 85vh, 900px);
   transform: scale(1.3) translateY(0);
   transition: transform 1.5s ease-in-out;
-  z-index: 3;
+  z-index: 4;
 }
 .background-2.scale {
   transform: scale(1.5) translateY(-5vh); /* ✅ Moves upward as it scales */
@@ -62,10 +74,21 @@
   width: 110vw;
   height: clamp(40vh, 50vh, 55vh);
   transition: transform 1.5s ease-in-out;
-  z-index: 4;
+  z-index: 5;
 }
 .background-3.scale {
   transform: translateX(-50%) scale(1.2);
+}
+
+.background-3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10vh; /* Adjust as needed */
+  background: linear-gradient(to bottom, rgba(17, 24, 39, 0) 0%, #111827 100%);
+  pointer-events: none;
 }
 
 /* 📏 Responsive Adjustments */
@@ -88,7 +111,7 @@
   .background-2 {
     width: clamp(55vw, 75vw, 750px);
     height: clamp(55vh, 75vh, 750px);
-    bottom: clamp(10vh, 14%, 18vh); /* ✅ Moves higher on small screens */
+    bottom: clamp(8vh, 12%, 16vh); /* ✅ Moves higher on small screens */
     right: 2vw;
   }
 
@@ -105,56 +128,171 @@
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
-  width: 6vw;
+  width: 8vw;
   height: auto;
   aspect-ratio: 2 / 1;
   bottom: 5vh;
-  right: -10vw; /* ✅ Starts hidden behind the planet */
+  right: -10vw;
   opacity: 1;
   transform: rotate(-15deg);
-  z-index: 2; /* ✅ Between planet & nebula */
-  animation: fly-away 7s linear 8s infinite; /* ✅ First flight starts after 15s */
+  z-index: 3;
+  animation: fly-away 7s linear 8s infinite;
 }
 
-/* 🚀 Flight Path (Same Smooth Motion) */
+/* 🚀 Motion Blur Effect */
 @keyframes fly-away {
-  0% { transform: translate(0, 0) rotate(-15deg); }
-  20% { transform: translate(-25vw, -10vh) rotate(-10deg); }
-  40% { transform: translate(-50vw, -25vh) rotate(-5deg); }
-  60% { transform: translate(-75vw, -40vh) rotate(0deg); }
-  80% { transform: translate(-100vw, -55vh) rotate(5deg); }
-  100% { transform: translate(-125vw, -65vh) rotate(10deg); } /* ✅ Fully exits */
+  0% {
+    transform: translate(0, 0) rotate(-15deg);
+    filter: blur(0px);
+    opacity: 1;
+  }
+  30% {
+    filter: blur(3px); /* Start applying blur */
+  }
+  50% {
+    filter: blur(5px); /* Peak blur at mid-flight */
+  }
+  80% {
+    filter: blur(3px); /* Reduce blur near end */
+  }
+  100% {
+    transform: translate(-125vw, -65vh) rotate(10deg);
+    filter: blur(0px);
+    opacity: 0.8; /* Slight fade as it exits */
+  }
 }
 
 /* 📏 Responsive Adjustments */
 @media (max-width: 1024px) {
   .hood {
-    width: 7vw;
-    animation: fly-away 7s linear 15s infinite 120s; /* ✅ Repeats every 120s */
+    width: 10vw;
   }
 
   @keyframes fly-away {
     0% { transform: translate(0, 0) rotate(-15deg); }
-    20% { transform: translate(-22vw, -8vh) rotate(-10deg); }
-    40% { transform: translate(-48vw, -22vh) rotate(-5deg); }
-    60% { transform: translate(-72vw, -35vh) rotate(0deg); }
-    80% { transform: translate(-98vw, -50vh) rotate(5deg); }
     100% { transform: translate(-125vw, -60vh) rotate(10deg); }
   }
 }
 
 @media (max-width: 768px) {
   .hood {
-    width: 8vw;
-    animation: fly-away 7s linear 15s infinite 120s;
+    width: 12vw;
   }
 
   @keyframes fly-away {
     0% { transform: translate(0, 0) rotate(-15deg); }
-    20% { transform: translate(-18vw, -7vh) rotate(-10deg); }
-    40% { transform: translate(-42vw, -18vh) rotate(-5deg); }
-    60% { transform: translate(-66vw, -30vh) rotate(0deg); }
-    80% { transform: translate(-90vw, -45vh) rotate(5deg); }
     100% { transform: translate(-120vw, -55vh) rotate(10deg); }
   }
 }
+
+/* Page title */
+.page-title {
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  width: 55%;
+  z-index: 2; /* Above nebula, below spaceship */
+  font-weight: bold;
+  display: block;
+  transform: translateX(-100vw);
+  animation: slide-in 1.5s ease-out forwards;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.page-title h1 {
+  text-shadow:
+    2px 2px 0px rgba(0, 0, 0, 1),
+    6px 6px 0px rgba(25, 25, 25, 1);
+}
+
+.page-title h1 {
+  font-size: clamp(4rem, 6.5vw, 7.5rem); /* Default scaling behavior */
+}
+
+/* Freeze scaling between 768px and 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .page-title h1 {
+    font-size: 4rem; /* Keep the h1 static in this range */
+  }
+}
+
+
+/* Action Buttons */
+.action-buttons {
+  position: absolute;
+  left: 5%; /* Aligns with the h1 */
+  bottom: clamp(10vh, 15%, 20vh); /* Scales position with viewport */
+  z-index: 5; /* Above the rocks */
+  display: flex;
+  flex-direction: row; /* Default: Side by side */
+  align-items: center;
+  gap: clamp(20px, 2.5vw, 50px); /* ⬅ Increased spacing by 25% */
+  opacity: 0;
+  animation: fade-in 1s ease-out 2s forwards;
+  transform: scale(1.5); /* Increases button size by 50% */
+}
+
+/* Stack vertically AND move down by 5% on small screens (1024px and below) */
+@media (max-width: 1024px) {
+  .action-buttons {
+    flex-direction: column;
+    align-items: flex-start; /* Align to the left */
+    bottom: calc(clamp(10vh, 15%, 20vh) + 5%); /* Moves down by 5% */
+    gap: clamp(15px, 2vw, 40px); /* Adjusted gap for stacked buttons */
+  }
+}
+
+.action-buttons button {
+  position: relative; /* Needed for the shine effect */
+  font-size: clamp(1.5rem, 3vw, 4.5rem); /* 50% larger text */
+  padding: clamp(15px, 3vw, 30px) clamp(25px, 5vw, 60px); /* 50% larger padding */
+  min-width: clamp(180px, 30vw, 500px); /* 50% larger width */
+  min-height: clamp(60px, 7.5vh, 150px); /* 50% larger height */
+  border-radius: clamp(8px, 1.5vw, 20px); /* Rounded corners scale */
+  font-weight: bold;
+  text-align: center;
+  overflow: hidden; /* Prevent shine effect from overflowing */
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Add a shine effect */
+.action-buttons button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%; /* Starts further off-screen */
+  width: 200%; /* Extends width so it fully exits */
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0) 60%);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease-in-out;
+}
+
+/* Trigger shine effect on hover */
+.action-buttons button:hover::after {
+  left: 150%; /* Moves fully off-screen */
+}
+
+.action-buttons button:hover {
+  transform: scale(1.1); /* Slightly enlarges button on hover */
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
