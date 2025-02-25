@@ -242,6 +242,7 @@
   min-width: clamp(250px, 35vw, 600px);
   min-height: clamp(80px, 10vh, 180px);
   border-radius: clamp(12px, 2.5vw, 30px);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.75), 6px 6px 0 rgba(25, 25, 25, 0.75);
   font-weight: bold;
   text-align: center;
   overflow: hidden;
