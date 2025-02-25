@@ -340,7 +340,7 @@
 }
 
 /* Landscape Rules */
-@media (orientation: landscape) {
+@media (max-height: 450px) and (orientation: landscape) {
   .background-2 {
     width: clamp(40vw, 50vw, 400px);
     height: clamp(40vh, 50vh, 400px);
