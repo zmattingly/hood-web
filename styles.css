@@ -217,13 +217,10 @@
   }
 
   .page-title h1 {
-    font-size: 3rem !important; /* Ensure it applies */
+    font-size: 3rem !important;
   }
 }
 
-
-
-/* Call To Action Buttons */
 .action-buttons {
   position: absolute;
   left: 5%;
@@ -281,7 +278,6 @@
   transform: scale(1.1);
 }
 
-
 @media (max-width: 768px) {
   .parallax-container {
     position: relative;
@@ -312,7 +308,6 @@
   }
 }
 
-
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -342,4 +337,36 @@
   flex-shrink: 1;
   font-size: clamp(1.2rem, 4vw, 1.8rem);
   min-width: 0;
+}
+
+/* Landscape Rules */
+@media (orientation: landscape) {
+  .background-2 {
+    width: clamp(40vw, 50vw, 400px);
+    height: clamp(40vh, 50vh, 400px);
+    bottom: clamp(4vh, 8%, 10vh);
+    right: 5vw;
+    transform: scale(1) translateY(0);
+  }
+
+  .page-title {
+    width: 75%;
+  }
+
+  .page-title h1 {
+    font-size: calc(0.6 * clamp(4rem, 6.5vw, 7.5rem));
+  }
+
+  .action-buttons {
+    flex-direction: row;
+    gap: clamp(15px, 2vw, 40px);
+  }
+
+  .action-buttons a {
+    font-size: calc(0.8 * clamp(2rem, 3vw, 4.5rem));
+    padding: calc(0.8 * clamp(24px, 4vw, 50px)) calc(0.8 * clamp(40px, 6vw, 100px));
+    width: auto;
+    min-width: auto;
+    min-height: auto;
+  }
 }
