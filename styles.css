@@ -154,6 +154,30 @@
   .hood {
     width: 14vw;
   }
+
+  .page-title {
+    width: 70%;
+  }
+
+  .page-title h1 {
+    font-size: clamp(1.25rem, 3vw, 3rem);
+  }
+
+  .page-title .totals h2 {
+    font-size: clamp(0.5rem, 1.5vw, 1.5rem);
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    bottom: calc(clamp(10vh, 15%, 20vh) + 5%);
+    gap: clamp(15px, 2vw, 40px);
+  }
+
+  .action-buttons a {
+    font-size: clamp(1.25rem, 2.25vw, 2.5rem);
+    padding: clamp(16px, 3vw, 30px) clamp(30px, 5vw, 60px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -185,13 +209,21 @@
 }
 
 .page-title h1 {
+  font-size: clamp(3rem, calc(3vw + 1vh), 6rem);
   text-shadow:
     2px 2px 0px rgba(0, 0, 0, 1),
     6px 6px 0px rgba(25, 25, 25, 1);
 }
 
-.page-title h1 {
-  font-size: clamp(4rem, calc(4vw + 1vh), 7.5rem);
+.page-title .totals {
+  margin-top: 30px;
+}
+
+.page-title .totals h2 {
+  font-size: clamp(2rem, calc(2.5vw + 1vh), 4rem);
+  text-shadow:
+    1px 1px 0px rgba(0, 0, 0, 1),
+    3px 3px 0px rgba(25, 25, 25, 1);
 }
 
 /* Freeze scaling between 768px and 1024px */
@@ -207,7 +239,11 @@
   }
 
   .page-title h1 {
-    font-size: 3rem !important;
+    font-size: 2.25rem !important;
+  }
+
+  .page-title h2 {
+    font-size: 1.5rem !important;
   }
 }
 
@@ -271,11 +307,20 @@
 
 @media (max-width: 768px) {
   .parallax-container {
+    height: 60vh;
     position: relative;
   }
 
   .page-title {
-    width: 90%;
+    width: 80%;
+  }
+
+  .page-title h1 {
+    font-size: 2.25rem !important;
+  }
+
+  .page-title h2 {
+   font-size: 1.5rem !important;
   }
 
   .action-buttons {
@@ -347,7 +392,17 @@
   }
 
   .page-title h1 {
-    font-size: calc(0.6 * clamp(4rem, 6.5vw, 7.5rem));
+    font-size: clamp(1.5rem, 3vw, 3.25rem);
+    text-shadow:
+    1px 1px 0px rgba(0, 0, 0, 1),
+    3px 3px 0px rgba(25, 25, 25, 1);
+  }
+
+  .page-title .totals h2 {
+    font-size: clamp(1rem, 2.25vw, 2rem);
+    text-shadow:
+    1px 1px 0px rgba(0, 0, 0, 1),
+    2px 2px 0px rgba(25, 25, 25, 1);
   }
 
   .action-buttons {
@@ -356,10 +411,14 @@
   }
 
   .action-buttons a {
-    font-size: calc(0.8 * clamp(2rem, 3vw, 4.5rem));
-    padding: calc(0.8 * clamp(24px, 4vw, 50px)) calc(0.8 * clamp(40px, 6vw, 100px));
+    font-size: clamp(1rem, 2vw, 2rem);
+    padding: clamp(12px, 2vw, 20px) clamp(20px, 3vw, 40px);
     width: auto;
     min-width: auto;
     min-height: auto;
   }
+}
+
+strong {
+  font-weight: bold;
 }
