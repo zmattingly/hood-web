@@ -104,21 +104,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  .background-2 {
-    width: clamp(55vw, 75vw, 750px);
-    height: clamp(55vh, 75vh, 750px);
-    bottom: clamp(8vh, 12%, 16vh);
-    right: 2vw;
-  }
-
-  .background-3 {
-    width: 125vw;
-    height: clamp(40vh, 45vh, 50vh);
-    bottom: 0px;
-  }
-}
-
 /* The Hood Takes Flight! */
 .hood {
   background: url("images/excelsior.png");
@@ -156,27 +141,37 @@
   }
 
   .page-title {
-    width: 70%;
+    width: 90%; /* was 55% — now stretches wider across screen */
   }
 
   .page-title h1 {
-    font-size: clamp(1.25rem, 3vw, 3rem);
+    font-size: clamp(1.25rem, 3.75vh, 3rem); /* reduced ~20% overall */
   }
 
   .page-title .totals h2 {
-    font-size: clamp(0.5rem, 1.5vw, 1.5rem);
+    font-size: clamp(1rem, 2.75vh, 2rem); /* reduced slightly too */
+  }
+
+  .background-2 {
+    width: clamp(50vw, 70vw, 750px); /* smaller than before */
+    height: clamp(50vh, 70vh, 750px);
+    bottom: clamp(10vh, 14%, 18vh);
+    right: -8vw; /* push it further offscreen to prevent overlap */
+    transform: scale(1.2) translateY(0); /* slightly smaller scale */
   }
 
   .action-buttons {
     flex-direction: column;
     align-items: flex-start;
     bottom: calc(clamp(10vh, 15%, 20vh) + 5%);
-    gap: clamp(15px, 2vw, 40px);
+    gap: clamp(12px, 1.5vh, 24px);
   }
 
   .action-buttons a {
-    font-size: clamp(1.25rem, 2.25vw, 2.5rem);
-    padding: clamp(16px, 3vw, 30px) clamp(30px, 5vw, 60px);
+    font-size: clamp(1rem, 2.5vh, 2rem);
+    padding: clamp(10px, 2vh, 20px) clamp(20px, 4vh, 40px);
+    min-height: clamp(40px, 6vh, 100px);
+    min-width: clamp(200px, 30vw, 500px);
   }
 }
 
@@ -229,13 +224,13 @@
 /* Freeze scaling between 768px and 1024px */
 @media (min-width: 768px) and (max-width: 1024px) {
   .page-title h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .page-title {
-    width: 45%;
+    width: 90%;
   }
 
   .page-title h1 {
@@ -309,10 +304,6 @@
   .parallax-container {
     height: 60vh;
     position: relative;
-  }
-
-  .page-title {
-    width: 80%;
   }
 
   .page-title h1 {
