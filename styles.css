@@ -1,4 +1,4 @@
-/* Parallax Hero Stuff */
+/* Parallax Hero */
 .parallax-container {
   position: relative;
   width: 100vw;
@@ -6,117 +6,102 @@
   overflow: hidden;
 }
 
-.parallax-container::after {
+.parallax-container::after,
+.background-3::after {
   content: "";
   position: absolute;
-  bottom: 0;
   left: 0;
+  bottom: 0;
   width: 100%;
-  height: clamp(4vh, 7vh, 10vh);
   background: linear-gradient(to bottom, rgba(17, 24, 39, 0) 0%, #111827 100%);
-  z-index: 6;
   pointer-events: none;
 }
 
+.parallax-container::after {
+  height: clamp(4vh, 7vh, 10vh);
+  z-index: 6;
+}
+
 .images-container {
+  position: relative;
   width: 100vw;
   height: 100%;
-  position: relative;
+}
+
+.background-1,
+.background-2,
+.background-3,
+.hood {
+  position: absolute;
+  background-repeat: no-repeat;
 }
 
 .background-1 {
-  background: url("images/nebula.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100%;
+  background-image: url("images/pillarspace.jpg");
+  background-size: cover;
+  background-position: center;
   transform: scale(1.2);
   transition: transform 1.5s ease-in-out;
   z-index: 1;
 }
+
 .background-1.scale {
   transform: scale(1);
 }
 
 .background-2 {
-  background: url("images/planet.png");
+  right: -5vw;
+  bottom: clamp(5vh, 10%, 12vh);
+  width: clamp(72vw, 93vw, 1050px);
+  height: clamp(72vh, 93vh, 1050px);
+  background-image: url("images/blackhole.webp");
   background-size: contain;
   background-position: bottom right;
-  background-repeat: no-repeat;
-  position: absolute;
-  bottom: clamp(5vh, 10%, 12vh);
-  right: -5vw;
-  width: clamp(65vw, 85vw, 900px);
-  height: clamp(65vh, 85vh, 900px);
-  transform: scale(1.3) translateY(0);
+  transform: scale(1.15) translateY(0);
   transition: transform 1.5s ease-in-out;
   z-index: 4;
 }
+
 .background-2.scale {
-  transform: scale(1.5) translateY(-5vh);
+  transform: scale(1.3) translateY(-5vh);
 }
 
 .background-3 {
-  background: url("images/rocks.png");
-  background-size: cover;
-  background-position: bottom center;
-  background-repeat: no-repeat;
-  position: absolute;
-  bottom: 0px;
   left: 50%;
-  transform: translateX(-50%) scale(1.1);
+  bottom: 0;
   width: 110vw;
   height: clamp(40vh, 50vh, 55vh);
+  background-image: url("images/rocks.png");
+  background-size: cover;
+  background-position: bottom center;
+  transform: translateX(-50%) scale(1.1);
   transition: transform 1.5s ease-in-out;
   z-index: 5;
 }
+
 .background-3.scale {
   transform: translateX(-50%) scale(1.2);
 }
 
 .background-3::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   height: 10vh;
-  background: linear-gradient(to bottom, rgba(17, 24, 39, 0) 0%, #111827 100%);
-  pointer-events: none;
 }
 
-@media (max-width: 1024px) {
-  .background-2 {
-    width: clamp(60vw, 80vw, 850px);
-    height: clamp(60vh, 80vh, 850px);
-    bottom: clamp(8vh, 12%, 14vh);
-    right: -2vw;
-  }
-
-  .background-3 {
-    width: 120vw;
-    height: clamp(45vh, 50vh, 55vh);
-    bottom: 0px;
-  }
-}
-
-/* The Hood Takes Flight! */
+/* Ship Animation */
 .hood {
-  background: url("images/excelsior.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: absolute;
+  right: -10vw;
+  bottom: 5vh;
   width: 8vw;
   height: auto;
   aspect-ratio: 2 / 1;
-  bottom: 5vh;
-  right: -10vw;
-  opacity: 1;
+  background-image: url("images/excelsior.png");
+  background-size: contain;
   transform: rotate(-15deg);
+  opacity: 1;
   z-index: 3;
 }
 
@@ -125,80 +110,37 @@
     transform: translate(0, 0) rotate(-15deg);
     opacity: 1;
   }
+
   80% {
     opacity: 1;
   }
+
   100% {
     transform: translate(-150vw, -80vh) rotate(10deg);
-    filter: blur(0px);
+    filter: blur(0);
     opacity: 0;
   }
 }
 
-@media (max-width: 1024px) {
-  .hood {
-    width: 14vw;
-  }
-
-  .page-title {
-    width: 90%; /* was 55% — now stretches wider across screen */
-  }
-
-  .page-title h1 {
-    font-size: clamp(1.25rem, 3.75vh, 3rem); /* reduced ~20% overall */
-  }
-
-  .page-title .totals h2 {
-    font-size: clamp(1rem, 2.75vh, 2rem); /* reduced slightly too */
-  }
-
-  .background-2 {
-    width: clamp(50vw, 70vw, 750px); /* smaller than before */
-    height: clamp(50vh, 70vh, 750px);
-    bottom: clamp(10vh, 14%, 18vh);
-    right: -8vw; /* push it further offscreen to prevent overlap */
-    transform: scale(1.2) translateY(0); /* slightly smaller scale */
-  }
-
-  .action-buttons {
-    flex-direction: column;
-    align-items: flex-start;
-    bottom: calc(clamp(10vh, 15%, 20vh) + 5%);
-    gap: clamp(12px, 1.5vh, 24px);
-  }
-
-  .action-buttons a {
-    font-size: clamp(1rem, 2.5vh, 2rem);
-    padding: clamp(10px, 2vh, 20px) clamp(20px, 4vh, 40px);
-    min-height: clamp(40px, 6vh, 100px);
-    min-width: clamp(200px, 30vw, 500px);
-  }
-}
-
-@media (max-width: 768px) {
-  .hood {
-    width: 22vw;
-  }
-}
-
-/* Main Header */
+/* Hero Title */
 .page-title {
   position: absolute;
-  left: 5%;
   top: 5%;
+  left: 5%;
   width: 55%;
   z-index: 2;
-  font-weight: bold;
   display: block;
+  font-weight: bold;
   transform: translateX(-100vw);
   animation: slide-in 1.25s ease-out forwards;
 }
 
 @keyframes slide-in {
-  0% {
+  from {
     transform: translateX(-100vw);
   }
-  100% {
+
+  to {
     transform: translateX(0);
   }
 }
@@ -206,42 +148,22 @@
 .page-title h1 {
   font-size: clamp(3rem, calc(3vw + 1vh), 6rem);
   text-shadow:
-    2px 2px 0px rgba(0, 0, 0, 1),
-    6px 6px 0px rgba(25, 25, 25, 1);
+    2px 2px 0 rgba(0, 0, 0, 1),
+    6px 6px 0 rgba(25, 25, 25, 1);
 }
 
-.page-title .totals {
-  margin-top: 30px;
+.page-title .page-dates {
+  margin-top: .5rem;
 }
 
-.page-title .totals h2 {
+.page-title .page-dates h2 {
   font-size: clamp(2rem, calc(2.5vw + 1vh), 4rem);
   text-shadow:
-    1px 1px 0px rgba(0, 0, 0, 1),
-    3px 3px 0px rgba(25, 25, 25, 1);
+    1px 1px 0 rgba(0, 0, 0, 1),
+    3px 3px 0 rgba(25, 25, 25, 1);
 }
 
-/* Freeze scaling between 768px and 1024px */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .page-title h1 {
-    font-size: 3.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .page-title {
-    width: 90%;
-  }
-
-  .page-title h1 {
-    font-size: 2.25rem !important;
-  }
-
-  .page-title h2 {
-    font-size: 1.5rem !important;
-  }
-}
-
+/* Action Buttons */
 .action-buttons {
   position: absolute;
   left: 5%;
@@ -252,31 +174,22 @@
   align-items: center;
   gap: clamp(20px, 2.5vw, 50px);
   opacity: 0;
-  animation: fade-in .75s ease-out 1s forwards;
   transform: scale(1.5);
-}
-
-@media (max-width: 1024px) {
-  .action-buttons {
-    flex-direction: column;
-    align-items: flex-start;
-    bottom: calc(clamp(10vh, 15%, 20vh) + 5%);
-    gap: clamp(15px, 2vw, 40px);
-  }
+  animation: fade-in 0.75s ease-out 1s forwards;
 }
 
 .action-buttons a {
   position: relative;
   display: inline-block;
-  font-size: clamp(2rem, 3vw, 4.5rem);
-  padding: clamp(24px, 4vw, 50px) clamp(40px, 6vw, 100px);
   min-width: clamp(250px, 35vw, 600px);
   min-height: clamp(80px, 10vh, 180px);
+  padding: clamp(24px, 4vw, 50px) clamp(40px, 6vw, 100px);
+  overflow: hidden;
   border-radius: clamp(12px, 2.5vw, 30px);
   box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.75), 6px 6px 0 rgba(25, 25, 25, 0.75);
+  font-size: clamp(2rem, 3vw, 4.5rem);
   font-weight: bold;
   text-align: center;
-  overflow: hidden;
   transition: transform 0.2s ease-in-out;
 }
 
@@ -284,55 +197,20 @@
   content: "";
   position: absolute;
   top: 0;
-  left: -150%; /* Starts further off-screen */
-  width: 200%; /* Extends width so it fully exits */
+  left: -150%;
+  width: 200%;
   height: 100%;
   background: linear-gradient(120deg, rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0) 60%);
   transform: skewX(-20deg);
   transition: left 0.6s ease-in-out;
 }
 
-.action-buttons a:hover::after {
-  left: 150%;
-}
-
 .action-buttons a:hover {
   transform: scale(1.1);
 }
 
-@media (max-width: 768px) {
-  .parallax-container {
-    height: 60vh;
-    position: relative;
-  }
-
-  .page-title h1 {
-    font-size: 2.25rem !important;
-  }
-
-  .page-title h2 {
-   font-size: 1.5rem !important;
-  }
-
-  .action-buttons {
-    position: absolute;
-    bottom: 12vh;
-    left: 5%;
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-  .action-buttons a {
-    width: 250px;
-    font-size: 1.2rem;
-    padding: 12px 0;
-    text-align: center;
-    border-radius: 8px;
-    min-height: 50px;
-  }
+.action-buttons a:hover::after {
+  left: 150%;
 }
 
 @keyframes fade-in {
@@ -340,6 +218,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -351,6 +230,7 @@
   animation: fade-in 0.75s ease-out 1.5s forwards;
 }
 
+/* Cards */
 .card .flex.items-center {
   flex-wrap: nowrap;
   white-space: nowrap;
@@ -362,20 +242,122 @@
 
 .card .flex.items-center h3 {
   flex-shrink: 1;
-  font-size: clamp(1.2rem, 4vw, 1.8rem);
   min-width: 0;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
   white-space: normal;
   word-wrap: break-word;
 }
 
-/* Landscape Rules */
+strong {
+  font-weight: bold;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hood {
+    width: 14vw;
+  }
+
+  .page-title {
+    width: 90%;
+  }
+
+  .page-title h1 {
+    font-size: clamp(1.25rem, 3.75vh, 3rem);
+  }
+
+  .page-title .page-dates h2 {
+    font-size: clamp(1rem, 2.75vh, 2rem);
+  }
+
+  .background-2 {
+    right: -4vw;
+    bottom: clamp(2vh, 6%, 8vh);
+    width: clamp(63vw, 87vw, 900px);
+    height: clamp(63vh, 87vh, 900px);
+  }
+
+  .background-3 {
+    width: 120vw;
+    height: clamp(45vh, 50vh, 55vh);
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    bottom: calc(clamp(10vh, 15%, 20vh) + 5%);
+    gap: clamp(15px, 2vw, 40px);
+  }
+
+  .action-buttons a {
+    min-width: clamp(200px, 30vw, 500px);
+    min-height: clamp(40px, 6vh, 100px);
+    padding: clamp(10px, 2vh, 20px) clamp(20px, 4vh, 40px);
+    font-size: clamp(1rem, 2.5vh, 2rem);
+  }
+}
+
+/* Freeze title scaling between tablet and desktop */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .page-title h1 {
+    font-size: 3.5rem;
+  }
+
+  .page-title .page-dates h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .parallax-container {
+    position: relative;
+    height: 60vh;
+  }
+
+  .hood {
+    width: 22vw;
+  }
+
+  .page-title {
+    width: 90%;
+  }
+
+  .page-title h1 {
+    font-size: 2.25rem !important;
+  }
+
+  .page-title h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .action-buttons {
+    left: 5%;
+    bottom: 10vh;
+    width: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .action-buttons a {
+    width: 250px;
+    min-height: 50px;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
+
+/* Short Landscape */
 @media (max-height: 450px) and (orientation: landscape) {
   .background-2 {
-    width: clamp(40vw, 50vw, 400px);
-    height: clamp(40vh, 50vh, 400px);
-    bottom: clamp(4vh, 8%, 10vh);
-    right: 5vw;
-    transform: scale(1) translateY(0);
+    right: -5vw;
+    bottom: clamp(5vh, 10%, 12vh);
+    width: clamp(72vw, 92vw, 1100px);
+    height: clamp(72vh, 92vh, 1100px);
+    transform: scale(1.3) translateY(0);
   }
 
   .page-title {
@@ -385,31 +367,27 @@
   .page-title h1 {
     font-size: clamp(1.5rem, 3vw, 3.25rem);
     text-shadow:
-      0.5px 0.5px 0px rgba(0, 0, 0, 1),
-      0.75px 0.75px 0px rgba(15, 15, 15, 1);
+      0.5px 0.5px 0 rgba(0, 0, 0, 1),
+      0.75px 0.75px 0 rgba(15, 15, 15, 1);
   }
 
-  .page-title .totals h2 {
+  .page-title .page-dates h2 {
     font-size: clamp(1rem, 2.25vw, 2rem);
     text-shadow:
-      1px 1px 0px rgba(0, 0, 0, 1),
-      2px 2px 0px rgba(25, 25, 25, 1);
+      1px 1px 0 rgba(0, 0, 0, 1),
+      2px 2px 0 rgba(25, 25, 25, 1);
   }
 
   .action-buttons {
     flex-direction: row;
-    gap: clamp(15px, 2vw, 40px);
+    gap: clamp(30px, 2vw, 40px);
   }
 
   .action-buttons a {
-    font-size: clamp(1rem, 2vw, 2rem);
-    padding: clamp(12px, 2vw, 20px) clamp(20px, 3vw, 40px);
     width: auto;
     min-width: auto;
     min-height: auto;
+    padding: clamp(12px, 2vw, 20px) clamp(20px, 3vw, 40px);
+    font-size: clamp(1rem, 2vw, 2rem);
   }
-}
-
-strong {
-  font-weight: bold;
 }
